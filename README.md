@@ -112,7 +112,7 @@ rabonapp/
 1. Instalar las dependencias
 
 ```shell
-git clone https://github.com/LucianoFlores1/Noti-app.git
+https://github.com/Nachzzz/Rabonapp_React.git
 ```
 
 ```bash
