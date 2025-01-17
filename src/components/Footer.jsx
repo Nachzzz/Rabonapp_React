@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        <p>Desarrollado por Equipo Dinamita. Todos los derechos reservados.</p>
+        <p>Desarrollado por Dinamita Devs. Todos los derechos reservados.</p>
         <p>&copy;2025 Rabonapp</p>
       </div>
     </footer>
