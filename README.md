@@ -56,11 +56,11 @@ Solo equipos "completos" pueden crear o solicitar participar de partidos.
 Un equipo puede reportar a un equipo rival si este último no cumplió con las expectativas
 de un encuentro. El reporte debe incluir comentario detallando lo sucedido.
 
-## Objetivo
+## 🎯 Objetivo
 
-Este proyecto tiene como objetivo implementar una aplicación web React con Vite, la cual brindará una interfaz gráfica para gestionar encuentros de partidos de fútbol 5 con personas de la zona.
+ Nuestro objetivo es desarrollar un sitio funcional, en el que el usuario puede gestionar
 
-## Estructura del proyecto
+## 🗂️ Estructura del proyecto 
 
 ```bash
 
@@ -107,9 +107,13 @@ rabonapp/
 - React Router 7.1.1+
 - React Router DOM 7.1.1+
 
-## Instalación
+## 📝 Instalación
 
 1. Instalar las dependencias
+
+```shell
+git clone https://github.com/LucianoFlores1/Noti-app.git
+```
 
 ```bash
 npm install
