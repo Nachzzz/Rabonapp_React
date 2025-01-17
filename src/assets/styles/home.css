@@ -1,0 +1,98 @@
+/* home.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+}
+
+.home {
+  background: url('/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.home::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.title {
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+/* src/assets/styles/home.css */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2em;
+  margin-bottom: 10px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.parrafo {
+  font-size: 1.1em;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  color: rgb(255, 255, 255);
+}
+
+.container-text{
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  margin-right: 50px;
+  color: white;
+  border-style: solid;
+  border-color: #bbb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5em;
+  }
+
+  .parrafo {
+    font-size: 1em;
+  }
+}

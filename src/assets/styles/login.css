@@ -1,0 +1,121 @@
+/* login.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+}
+
+.login-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; /* Fondo oscuro semitransparente */
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1; 
+}
+
+.form-container {
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  margin-right: 50px;
+  color: white;
+  border-style: solid;
+  border-color: #bbb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 200px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: white;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #cccccc;
+}
+
+input {
+  width: 95%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+input::placeholder {
+  color: #bbb;
+}
+
+button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-blue-500 {
+  color: #007bff;
+}
+
+.text-blue-500:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    max-width: 80%;
+    margin-right: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    max-width: 90%;
+    margin-right: 5%;
+  }
+}
+
+
+.login-background {
+  background-image: url('/fondo.png'); /* Reemplaza con la ruta de tu imagen */
+  background-size: cover;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
