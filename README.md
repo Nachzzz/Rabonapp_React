@@ -109,17 +109,18 @@ rabonapp/
 
 ## 📝 Instalación
 
-1. Instalar las dependencias
+1. Clonar el repositorio
 
 ```shell
-git clone https://github.com/LucianoFlores1/Noti-app.git
+git clone https://github.com/Nachzzz/Rabonapp_React.git
 ```
+2. Instalar las dependencias
 
 ```bash
 npm install
 ```
 
-2. Iniciar el servidor de desarrollo
+3. Iniciar el servidor de desarrollo
 
 ```bash
 npm run dev

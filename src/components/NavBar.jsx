@@ -12,7 +12,7 @@ const Navbar = () => {
         <ul className="navbar-menu">
           <li className="navbar-item">
             <Link to="/" className="navbar-link">
-              Home
+              Inicio
             </Link>
           </li>
           <li className="navbar-item">
@@ -22,7 +22,7 @@ const Navbar = () => {
           </li>
           <li className="navbar-item">
             <Link to="/register" className="navbar-link">
-              Register
+              Regístrate
             </Link>
           </li>
         </ul>
