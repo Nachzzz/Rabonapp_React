@@ -56,5 +56,68 @@ Solo equipos "completos" pueden crear o solicitar participar de partidos.
 Un equipo puede reportar a un equipo rival si este último no cumplió con las expectativas
 de un encuentro. El reporte debe incluir comentario detallando lo sucedido.
 
+## Objetivo
+
+Este proyecto tiene como objetivo implementar una aplicación web React con Vite, la cual brindará una interfaz gráfica para gestionar encuentros de partidos de fútbol 5 con personas de la zona.
+
+## Estructura del proyecto
+
+```bash
+
+rabonapp/
+│ public/
+│ src/
+│ ├── assets/
+│ ├── components/
+│ │ ├── RegisterForm.jsx
+│ │ ├── LoginForm.jsx
+│ ├── contexts/
+│ │ ├── AuthContext.jsx
+│ ├── hooks/
+│ │ ├── useAuth.js
+│ ├── pages/
+│ │ ├── UserProfile/
+│ │ │ ├── UserProfile.jsx
+│ │ ├── Home/
+│ │ │ ├── Home.jsx
+│ ├── routes/
+│ │ ├── PrivateRoute.jsx
+│ │ ├── Layout.jsx
+│ │ ├── Router.jsx
+│ ├── services/
+│ │ ├── api.js
+│ │ ├── authService.js
+│ │ ├── projectService.js
+│ │ ├── activityService.js
+│ ├── main.jsx
+├── .eslintrc.cjs
+├── index.html
+├── index.js
+├── package-lock.json
+├── package.json
+├── vite.config.js
+
+```
+
+## Requerimientos
+
+- Node.js 18.16.1+
+- Vite 6.0.5+
+- React 18.3.1+
+- React Router 7.1.1+
+- React Router DOM 7.1.1+
+
 ## Instalación
+
+1. Instalar las dependencias
+
+```bash
+npm install
+```
+
+2. Iniciar el servidor de desarrollo
+
+```bash
+npm run dev
+```
 
