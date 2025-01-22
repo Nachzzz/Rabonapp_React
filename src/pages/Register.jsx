@@ -1,10 +1,13 @@
-// src/pages/Register.js
 import React, { useState } from "react";
-import '../assets/styles/register.css';  // importar archivo CSS
+import '../assets/styles/register.css';
+import { Navigate } from "react-router";
 
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
+    surname: "",
+    nickname: "",
+    age: "",
     email: "",
     password: "",
   });
@@ -13,14 +16,36 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Register Data: ", formData);
-    // Aquí realizarías la llamada a la API de registro
+
+    // Validación Básica
+    if (!formData.name || !formData.surname || !formData.nickname || !formData.age || !formData.email || !formData.password) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('Jugador registrado exitosamente');
+      } else {
+        console.error('Error en el registro');
+      }
+    } catch (error) {
+      console.error('Error en la solicitud: ', error);
+    }
   };
 
   return (
-    <div className="register-container">
+    <div className="register-container" action="/register" method="POST">
       <form onSubmit={handleSubmit} className="form">
         <h1>Regístrate</h1>
         <div className="input-container">
@@ -37,8 +62,8 @@ const Register = () => {
           <label>Apellido</label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="surname"
+            value={formData.surname}
             onChange={handleChange}
             placeholder="Apellido completo"
           />
@@ -47,8 +72,8 @@ const Register = () => {
           <label>Apodo</label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="nickname"
+            value={formData.nickname}
             onChange={handleChange}
             placeholder="Apodo"
           />
@@ -57,8 +82,8 @@ const Register = () => {
           <label>Edad</label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="age"
+            value={formData.age}
             onChange={handleChange}
             placeholder="Edad"
           />

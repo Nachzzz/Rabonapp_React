@@ -1,6 +1,6 @@
 /* src/assets/styles/register.css */
 .register-container {
-    background-image: url('/fondo.png'); /* Reemplaza con la ruta de tu imagen */
+    background-image: url('/fondo.png');
     background-size: cover;
     display: flex;
     justify-content: center;
