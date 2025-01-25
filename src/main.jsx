@@ -7,6 +7,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <RouterProvider router={Router} />
 );
 
+//commit
+
 // import React from "react";
 // import ReactDOM from "react-dom/client";
 // import { BrowserRouter } from "react-router-dom";

@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import useFetch from '../hooks/useFetch';  // Asegúrate de que la ruta sea correcta
 import '../assets/styles/home.css'; // importar archivo CSS
 
+//commit
+
 const Home = () => {
   const { data: jugadores, isLoading, isError } = useFetch('http://localhost:5000/partidos');
 

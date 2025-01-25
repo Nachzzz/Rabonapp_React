@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import '../assets/styles/navbar.css'; // importar archivo CSS
 import { useAuth } from "../contexts/AuthContext";
 
+//commit
+
 const Navbar = () => {
 
   const logout = useAuth('actions').logout;

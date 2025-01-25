@@ -11,6 +11,7 @@ const Home = () => {
     }
   }, [jugadores]);
 
+  //commit
   return (
     <div className="home">
       <div className="container-text">
