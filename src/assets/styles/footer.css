@@ -1,8 +1,8 @@
 /* footer.css */
 .footer {
-    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+    background: rgba(0, 0, 0, 0.89); /* Fondo oscuro semitransparente */
     padding: 1rem;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     padding: 5px;
@@ -10,7 +10,7 @@
   
   .footer-container {
     text-align: center;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 1rem;
   }
   

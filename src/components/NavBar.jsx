@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import '../assets/styles/navbar.css'; // importar archivo CSS
+import { useAuth } from "../contexts/AuthContext";
 
 const Navbar = () => {
+
+  const logout = useAuth('actions').logout;
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -17,7 +21,7 @@ const Navbar = () => {
           </li>
           <li className="navbar-item">
             <Link to="/login" className="navbar-link">
-              Login
+              Iniciar sesión
             </Link>
           </li>
           <li className="navbar-item">
@@ -25,6 +29,7 @@ const Navbar = () => {
               Regístrate
             </Link>
           </li>
+          <button onClick={logout} className='' id='salir'>Cerrar sesión</button>
         </ul>
       </div>
     </nav>
