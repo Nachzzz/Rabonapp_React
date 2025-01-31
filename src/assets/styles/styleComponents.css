@@ -112,3 +112,13 @@ body {
     justify-content: center;
     margin: 9rem;
    }
+
+   .partidos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    border-radius: 8px;
+    margin: 10px;
+  }

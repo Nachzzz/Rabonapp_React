@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import '../assets/styles/stylePages.css';
+import VerPartido from '../components/VerPartido'
 
 export default function Partidos() {
     const { token } = useAuth('state');
@@ -76,7 +77,7 @@ export default function Partidos() {
         }
     };
     
-    const enviarReporte = async (comentario, idPartido) => {
+    const enviarReporte = async (idPartido, comentario) => {
         try {
             const response = await fetch('http://127.0.0.1:5000/enviar-reporte', {
                 method: 'POST',
@@ -105,8 +106,6 @@ export default function Partidos() {
         }
     };
     
-    
-
     return (
         <div className='todoPartido'>
             <div className='reportes-container'>
@@ -118,14 +117,15 @@ export default function Partidos() {
                 <h2>Partidos registrados</h2>
                 <div>
                     <ul>
-                        {partidos.map((partido) => (
-                            <li key={partido.ID}>
-                                {partido.equipos} - {partido.lugar} - {partido.fecha}
-                            </li>
-                        ))}
+                    {partidos.map((partido) => (
+                            <VerPartido
+                                key={partido.ID}
+                                partido={partido}
+                            />
+                    ))}
                     </ul>
                 </div>
-                <div>
+                <div className=''>
                     <button onClick={toCrearPartido}>Crear Partido</button>
                     <button onClick={toCrearPartidoAbierto}>Crear Partido Abierto</button>
                     <button onClick={toUnirsePartidoAbierto}>Unirse a un Partido Abierto</button>
