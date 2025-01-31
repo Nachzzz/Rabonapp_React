@@ -15,7 +15,7 @@ export default function VerSolicitud({solicitud}) {
         Swal.fire({
             title: 'Detalles de la Solicitud',
             html: `
-                <p><strong>ID del jugador:</strong> ${soli.idJugador}</p>
+                <p><strong>jugador:</strong> ${soli.idJugador}</p>
                 <p><strong>Mensaje:</strong> "${soli.mensaje}"</p>
             `,
             icon: 'info',
