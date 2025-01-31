@@ -106,14 +106,6 @@ const Router = createBrowserRouter([
                         <JoinMatch />
                     </ProtectedRoute>
                 )
-            },
-            {
-                path: "enviar-reporte",
-                element: (
-                    <ProtectedRoute>
-                        <Partidos />
-                    </ProtectedRoute>
-                )
             }
         ],
     },

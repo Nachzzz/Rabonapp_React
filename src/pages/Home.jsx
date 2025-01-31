@@ -55,7 +55,7 @@ const Home = () => {
                     <h1 className="">Bienvenidos a<img src="/logo2.png" alt="" />
                     </h1>
                     <p className="">
-                        <h3>Un sitio para organizar partidos de fútbol 5 con tus amigos o desconocidos de la zona.</h3>
+                        Un sitio para organizar partidos de fútbol 5 con tus amigos o desconocidos de la zona.
                     </p>
                 </div>
 
