@@ -1,0 +1,432 @@
+/* home.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .home {
+    background: url('/fondo.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+  }
+  
+  .title {
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title {
+      font-size: 2rem;
+    }
+  }
+  
+  /* src/assets/styles/home.css */
+
+  .abajo {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .todoHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 12rem;
+  }
+
+  .todoPartido {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin: 9rem;
+  }
+
+  .todoSolicitarEquipo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 9rem;
+  }
+
+  .equipos-solicitud{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem;
+  }
+
+  .todoMatch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .register-open-match-container{
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8rem;
+    width: 80rem;
+  }
+
+  .reportes{
+    display: flex;
+    
+  }
+
+  .reportes-container{
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    width: 80rem;
+  }
+
+  .solicitar-equipo-container{
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    width: 80rem;
+  }
+
+  .lista-solicitar-equipo{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .todo2 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 22rem;
+  }
+  
+  .home {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .title {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+  }
+  
+  .parrafo {
+    font-size: 1.1em;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    color: rgb(255, 255, 255);
+  }
+  
+  .bienve{
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    width: 80rem;
+  }
+
+  .bienveEquip{
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    width: 80rem;
+  }
+
+  .container-text{
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-right: 50px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    margin-bottom: 20%;
+  }
+
+  .logo-home{
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    height: 85px;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 1.5em;
+    }
+  
+    .parrafo {
+      font-size: 1em;
+    }
+  }
+
+  /* perfil.css */
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  
+ 
+  .perfil-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+  }
+  
+  h1, h2, h3 {
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .jugador-carta {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .jugador-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .jugador-form div {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .jugador-form label {
+    font-weight: bold;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .solicitudes {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .equipos-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .equipos-container h2 {
+    margin-bottom: 10px;
+  }
+
+   /* equipos.css */
+
+   .equip{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: 10rem;
+    margin-top: 5rem;
+    border-radius: 8px;
+    padding: 20px;
+    flex-wrap: wrap;
+    flex-direction: row;
+   }
+
+   .equipMios{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: 10rem;
+    margin-top: 5rem;
+    margin-right: 5rem;
+    border-radius: 8px;
+    padding: 20px;
+    flex-wrap: wrap;
+    flex-direction: row;
+   }
+
+   .crearEquip{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: 10rem;
+    margin-top: 5rem;
+    border-radius: 8px;
+    padding: 20px;
+   }
+
+   .todoEquip{
+    display: flex;
+    align-items: flex-start;
+    color: white;
+    padding: 20px;
+   }
+
+   .sectEquip{
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 20px;
+    flex-direction: column;
+   }
+
+   .divEquip{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+   }
+
+   .orden{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+   }
+
+   .orden2{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 1rem;
+   }
+
+   /* Crearequipo.css */
+
+   .equipo-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 5rem;
+    margin-bottom: 19.8rem;
+    padding: 5rem;
+    color: white;
+    border-style: solid;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   }

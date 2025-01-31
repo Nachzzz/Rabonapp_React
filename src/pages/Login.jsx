@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import '../assets/styles/login.css'; // Importar archivo CSS
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,25 +24,30 @@ const Login = () => {
   
       if (response.ok) {
         const data = await response.json();
-        const token = data.token;
-  
-        // Guardar el token en localStorage
-        localStorage.setItem("auth_token", token);
-        console.log("Token: ", token);
-  
-        console.log("Inicio de sesión exitoso.");
-        navigate("/partidos"); // Redirigir a la página principal
+        localStorage.setItem("token", data.access_token);
+        Swal.fire({
+          icon: "success",
+          title: "Sesión iniciada",
+        })
+        navigate("/");
+        window.location.reload();
       } else {
         const errorData = await response.json();
-        const message = errorData.msg || "Error al iniciar sesión";
-        setError(message);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: errorData.msg || "Error al iniciar sesión.",
+        });
       }
     } catch (err) {
-      setError("Error al conectar con el servidor.");
+      Swal.fire({
+        icon: "error",
+        title: "Error de conexión",
+        text: "No se pudo conectar con el servidor.",
+    });
     }
   };
   
-
   return (
     <div className="login-background">
       <div className="container">

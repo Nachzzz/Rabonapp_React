@@ -1,60 +1,116 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
+import Swal from "sweetalert2";
 
-const CrearEquipo = () => {
-  const [nombre, setNombre] = useState("");
-  const [imagen, setImagen] = useState(null);
-  const [mensaje, setMensaje] = useState("");
+const RegisterTeam = () => {
+    const { token } = useAuth("state");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", nombre);
-    formData.append("img", imagen);
+    const [formData, setFormData] = useState({
+        nombre: "",
+        img: "",
+    });
 
-    try {
-      const response = await axios.post("http://localhost:5000/crearEquipo", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      setMensaje(`Equipo creado exitosamente: ${response.data.nombre}`);
-      setNombre("");
-      setImagen(null);
-    } catch (error) {
-      setMensaje("Error al crear el equipo: " + error.response?.data?.msg || error.message);
-    }
-  };
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-  return (
-    <div>
-      <h2>Crear Equipo</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="nombre">Nombre del equipo:</label>
-          <input
-            type="text"
-            id="nombre"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            required
-          />
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!formData.nombre || !formData.img) {
+            Swal.fire({
+                icon: "warning",
+                title: "Campos incompletos",
+                text: "Por favor, completa todos los campos.",
+            });
+            return;
+        }
+
+        if (!token) {
+            Swal.fire({
+                icon: "error",
+                title: "No autenticado",
+                text: "No estás autenticado. Por favor, inicia sesión.",
+            });
+            return;
+        }
+
+        const confirm = await Swal.fire({
+            title: "¿Confirmar registro?",
+            text: `¿Deseas registrar el equipo "${formData.nombre}"?`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Sí, registrar",
+            cancelButtonText: "Cancelar",
+        });
+
+        if (!confirm.isConfirmed) return;
+
+        try {
+            const response = await fetch("http://127.0.0.1:5000/crearEquipo", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                Swal.fire({
+                    icon: "success",
+                    title: "Equipo registrado",
+                    text: `¡Bienvenidos ${data.nombre} a Rabonapp!`,
+                });
+                setFormData({ nombre: "", img: "" }); // Resetear formulario
+            } else {
+                const errorData = await response.json();
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: errorData.msg || "Error al registrar el equipo.",
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error de conexión",
+                text: `No se pudo conectar con el servidor: ${error.message}`,
+            });
+        }
+    };
+
+    return (
+        <div className="">
+            <form onSubmit={handleSubmit} className="equipo-form">
+                <h1>Registrar Equipo</h1>
+                <div className="">
+                    <label>Nombre del Equipo</label>
+                    <input
+                        type="text"
+                        name="nombre"
+                        value={formData.nombre}
+                        onChange={handleChange}
+                        placeholder="Nombre del equipo"
+                    />
+                </div>
+                <div className="">
+                    <label>Enlace del Escudo</label>
+                    <input
+                        type="text"
+                        name="img"
+                        value={formData.img}
+                        onChange={handleChange}
+                        placeholder="URL del escudo"
+                    />
+                </div>
+                <div>
+                    <button type="submit">Registrar Equipo</button>
+                </div>
+            </form>
         </div>
-        <div>
-          <label htmlFor="imagen">Escudo del equipo:</label>
-          <input
-            type="file"
-            id="imagen"
-            accept="image/*"
-            onChange={(e) => setImagen(e.target.files[0])}
-            required
-          />
-        </div>
-        <button type="submit">Crear Equipo</button>
-      </form>
-      {mensaje && <p>{mensaje}</p>}
-    </div>
-  );
+    );
 };
 
-export default CrearEquipo;
+export default RegisterTeam;

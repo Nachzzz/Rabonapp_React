@@ -50,8 +50,7 @@ body, html {
 /* src/assets/styles/home.css */
 .home {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
 .title {
@@ -85,6 +84,22 @@ body, html {
   align-items: center;
   margin: 10px;
   margin-bottom: 20%;
+  margin-top: 30%;
+}
+
+.container-text2{
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  color: white;
+  border-style: solid;
+  border-color: #bbb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
 }
 
 /* Estilos responsivos */

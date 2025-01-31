@@ -1,7 +1,6 @@
 import { createContext, useReducer, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-//commit
 
 const AuthContext = createContext({
     state: {},
@@ -19,6 +18,7 @@ function reducer(state, action) {
             return {
                 ...state,
                 token: action.payload,
+                user__id: action.payload.user__id,
                 isAuthenticated: true,
             };
         case ACTIONS.LOGOUT:
@@ -33,22 +33,26 @@ function reducer(state, action) {
 
 function AuthProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, {
-        token: localStorage.getItem("auth_token"),
-        isAuthenticated: !!localStorage.getItem("auth_token"),
+        token: localStorage.getItem("token"),
+        user__id: localStorage.getItem("user__id"),
+        isAuthenticated: !!localStorage.getItem("token"),
     });
     const navigate = useNavigate();
     const location = useLocation();
 
     const actions = {
-        login: (token) => {
-            dispatch({ type: ACTIONS.LOGIN, payload: token });
-            localStorage.setItem("auth_token", token);
+        login: (token, user__id) => {
+            dispatch({ type: ACTIONS.LOGIN, payload: {token , user__id} });
+            localStorage.setItem("token", token);
+            localStorage.setItem("user__id", user__id);
+
             const origin = location.state?.from?.pathname || "/";
             navigate(origin);
         },
         logout: () => {
             dispatch({ type: ACTIONS.LOGOUT });
-            localStorage.removeItem("auth_token");
+            localStorage.removeItem("token");
+            localStorage.removeItem("user__id");
         },
     };
 

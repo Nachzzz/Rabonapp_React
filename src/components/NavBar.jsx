@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../assets/styles/navbar.css'; // importar archivo CSS
 import { useAuth } from "../contexts/AuthContext";
-
-//commit
+import '../assets/styles/styleComponents.css';
 
 const Navbar = () => {
 
   const logout = useAuth('actions').logout;
+  const { token } = useAuth('state')
 
   return (
     <nav className="navbar">
@@ -16,22 +15,46 @@ const Navbar = () => {
           <img src="/logo.png" alt="" className="logo-img"/>
         </Link>
         <ul className="navbar-menu">
-          <li className="navbar-item">
+          <li className="navbar-container">
             <Link to="/" className="navbar-link">
               Inicio
             </Link>
           </li>
-          <li className="navbar-item">
-            <Link to="/login" className="navbar-link">
-              Iniciar sesión
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link to="/register" className="navbar-link">
-              Regístrate
-            </Link>
-          </li>
-          <button onClick={logout} className='' id='salir'>Cerrar sesión</button>
+          {token ? (
+            <>
+              <li className="navbar-item">
+                <Link to="/partidos" className="navbar-link">
+                  Partidos
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/equipos" className="navbar-link">
+                  Equipos
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/perfil" className="navbar-link">
+                  Mi Perfil
+                </Link>
+              </li>
+              <button onClick={logout} className='' id='salir'>Cerrar sesión</button>
+            </>
+
+          ) : (
+            <>
+              <li className="navbar-item">
+                <Link to="/login" className="navbar-link">
+                  Iniciar sesión
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/register" className="navbar-link">
+                  Regístrate
+                </Link>
+              </li>
+            </>
+
+          )}
         </ul>
       </div>
     </nav>
