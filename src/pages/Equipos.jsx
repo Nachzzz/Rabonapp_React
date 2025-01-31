@@ -186,7 +186,7 @@ export default function Equipos() {
                 <div className="equip">
                     <div className="container-text">
                         <p>Aqui podrás ver las solicitudes de otros jugadores a tu equipo</p>
-                        <button onClick={handleCargarSolicitudes}>Ver solicitudes</button>
+                        <button onClick={handleCargarSolicitudes}>Desplegar Solicitudes</button>
                         {verSolicitudes ? (
                             <>
                                 {solicitudes.length > 0 ? (

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import '../assets/styles/stylePages.css'
+import Swal from "sweetalert2";
 
 
 const RegisterMatch = () => {
@@ -74,19 +76,30 @@ const RegisterMatch = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                setMessage("Enfrentamiento registrado correctamente.");
+                Swal.fire({
+                                    icon: "success",
+                                    title: "Enfrentamiento registrado",
+                                    text: "El partido se registró correctamente.",
+                                })
             } else {
-                const errorData = await response.json();
-                setMessage("Error al registrar el enfrentamiento.");
+                const errorData = await response.json();Swal.fire({
+                                    icon: "error",
+                                    title: "Error",
+                                    text: errorData.msg || "Error al registrar el enfrentamiento.",
+                                });
             }
         } catch (error) {
-            setMessage("Error al conectar con el servidor.", error);
+            Swal.fire({
+                            icon: "error",
+                            title: "Error de conexión",
+                            text: "No se pudo conectar con el servidor.",
+                        });
         }
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="todoRegEnfren">
+            <form onSubmit={handleSubmit} className="reg-enfren-container">
                 <h1>Registrar Enfrentamiento</h1>
                 <div>
                     <label>Lugar</label>

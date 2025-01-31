@@ -36,6 +36,8 @@ export default function Partidos() {
                     equipos: partido[3]
                 }));
                 setPartidos(partidosFormato);
+                console.log(partidosFormato);
+
             } catch (error) {
                 console.error('Error al obtener los datos', error);
             }
@@ -44,49 +46,37 @@ export default function Partidos() {
     }, []);
 
     const toggleReporte = async () => {
-        // Obtener la lista de equipos únicos
-        const equiposUnicos = [];
-        partidos.forEach((partido) => {
-            partido.equipos.split(' vs ').forEach((equipo) => {
-                if (!equiposUnicos.includes(equipo)) {
-                    equiposUnicos.push(equipo);
-                }
-            });
-        });
-
-        // Mostrar el cuadro de diálogo de SweetAlert2
+        // Obtener la lista de partidos para seleccionar un equipo a reportar
         const { value: formValues } = await Swal.fire({
             title: 'Crear Reporte',
-            html:
-                `<label>Equipo a reportar:</label>` +
-                `<select id="equipo" class="swal2-select">` +
-                `<option value="">Seleccione un equipo</option>` +
-                equiposUnicos.map((equipo) => `<option value="${equipo}">${equipo}</option>`).join('') +
-                `</select>` +
-                `<label>Comentario:</label>` +
-                `<textarea id="comentario" class="swal2-textarea" placeholder="Escribe tu comentario aquí..."></textarea>`,
-            focusConfirm: false,
+            html: `
+                <label>Partido:</label>
+                <select id="partido" class="swal2-select">
+                    <option value="">Seleccione un partido</option>
+                    ${partidos.map((p) => `<option value="${p.ID}">${p.equipos} - ${p.fecha}</option>`).join('')}
+                </select>
+                <label>Comentario:</label>
+                <textarea id="comentario" class="swal2-textarea" placeholder="Escribe tu comentario aquí..."></textarea>
+            `,
             showCancelButton: true,
             confirmButtonText: 'Enviar',
-            cancelButtonText: 'Cancelar',
             preConfirm: () => {
-                const equipo = document.getElementById('equipo').value;
+                const idPartido = document.getElementById('partido').value;
                 const comentario = document.getElementById('comentario').value;
-
-                if (!equipo || !comentario.trim()) {
-                    Swal.showValidationMessage('Por favor, selecciona un equipo y escribe un comentario.');
+    
+                if (!idPartido || !comentario.trim()) {
+                    Swal.showValidationMessage('Por favor, selecciona un partido y escribe un comentario.');
                 }
-                return { equipo, comentario };
+                return { idPartido, comentario };
             }
         });
-
-        // Si el usuario confirma, enviar el reporte
+    
         if (formValues) {
-            enviarReporte(formValues.equipo, formValues.comentario);
+            enviarReporte(formValues.idPartido, formValues.comentario);
         }
     };
-
-    const enviarReporte = async (equipo, comentario) => {
+    
+    const enviarReporte = async (comentario, idPartido) => {
         try {
             const response = await fetch('http://127.0.0.1:5000/enviar-reporte', {
                 method: 'POST',
@@ -95,24 +85,27 @@ export default function Partidos() {
                     'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({
-                    equipo_reportado: equipo,
+                    ID_partido: idPartido,  // Asegurar que se envía el ID del partido
+                    // equipo_reportado: equipo,
                     comentario: comentario,
                 }),
             });
-
+    
             if (!response.ok) {
                 throw new Error('Error al enviar el reporte');
             }
-
+    
             const data = await response.json();
             console.log('Respuesta del servidor:', data);
-
+    
             Swal.fire('Enviado', 'El reporte ha sido enviado correctamente.', 'success');
         } catch (error) {
             console.error('Error:', error);
             Swal.fire('Error', 'No se pudo enviar el reporte.', 'error');
         }
     };
+    
+    
 
     return (
         <div className='todoPartido'>

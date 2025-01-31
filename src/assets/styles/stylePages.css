@@ -82,6 +82,13 @@ body, html {
     margin: 9rem;
   }
 
+  .todoRegEnfren {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 6rem;
+  }
+
   .equipos-solicitud{
     display: flex;
     flex-direction: column;
@@ -107,6 +114,20 @@ body, html {
     flex-direction: column;
     align-items: center;
     margin: 8rem;
+    width: 80rem;
+  }
+
+  .reg-enfren-container{
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem;
     width: 80rem;
   }
 
