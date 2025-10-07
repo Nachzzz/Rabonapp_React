@@ -2,8 +2,8 @@
 .footer {
     background: rgba(0, 0, 0, 0.89); /* Fondo oscuro semitransparente */
     padding: 1rem;
-    position: relative;
-    bottom: 0;
+    position: absolute;
+    bottom: -27vh;
     width: 100%;
     padding: 5px;
   }

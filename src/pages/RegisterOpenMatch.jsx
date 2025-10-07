@@ -24,7 +24,17 @@ const RegisterMatch = () => {
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    setEquipos(data); // Suponiendo que la API retorna una lista de nombres
+                    // Normalizar distintos formatos de respuesta a {id, nombre}
+                    const equiposNorm = (Array.isArray(data) ? data : []).map((equipo) => {
+                        if (Array.isArray(equipo)) {
+                            return { id: equipo[0] ?? null, nombre: equipo[1] ?? String(equipo[0] ?? '') };
+                        }
+                        if (equipo && typeof equipo === 'object') {
+                            return { id: equipo.ID ?? equipo.id ?? equipo.id_equipo ?? null, nombre: equipo.nombre ?? equipo.Nombre ?? Object.values(equipo)[0] ?? '' };
+                        }
+                        return { id: null, nombre: String(equipo) };
+                    });
+                    setEquipos(equiposNorm);
                 } else {
                     Swal.fire({
                         icon: "error",
@@ -133,9 +143,9 @@ const RegisterMatch = () => {
                     <label>Equipo Local</label>
                     <select name="equipo_local_nombre" value={formData.equipo_local_nombre} onChange={handleChange}>
                         <option value="">Selecciona un equipo</option>
-                        {equipos.map((equipo, index) => (
-                            <option key={index} value={equipo.nombre}>
-                                {equipo[0]}
+                        {equipos.map((item, index) => (
+                            <option key={item.id ?? index} value={item.nombre}>
+                                {item.nombre}
                             </option>
                         ))}
                     </select>

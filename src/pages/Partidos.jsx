@@ -30,14 +30,31 @@ export default function Partidos() {
                 }
                 const data = await response.json();
 
-                const partidosFormato = data.map((partido) => ({
-                    ID: partido[0],
-                    lugar: partido[1],
-                    fecha: partido[2],
-                    equipos: partido[3]
-                }));
-                setPartidos(partidosFormato);
-                console.log(partidosFormato);
+                const partidosFormato = (Array.isArray(data) ? data : []).map((partido, idx) => {
+                    if (Array.isArray(partido)) {
+                        return {
+                            ID: partido[0] ?? null,
+                            lugar: partido[1] ?? null,
+                            fecha: partido[2] ?? null,
+                            equipos: partido[3] ?? null,
+                        }
+                    }
+
+                    if (partido && typeof partido === 'object') {
+                        return {
+                            ID: partido.ID ?? partido.id ?? partido.ID_partido ?? partido.id_partido ?? null,
+                            lugar: partido.lugar ?? partido.Lugar ?? partido.ubicacion ?? partido.location ?? null,
+                            fecha: partido.fecha ?? partido.date ?? partido.fecha_partido ?? null,
+                            equipos: partido.equipos ?? partido.equipo ?? partido.equipos_concat ?? JSON.stringify(partido.equipos) ?? null,
+                        }
+                    }
+
+                    console.warn('Partidos: unexpected item shape at index', idx, partido)
+                    return { ID: null, lugar: null, fecha: null, equipos: null }
+                })
+
+                setPartidos(partidosFormato)
+                console.log('Partidos normalizados:', partidosFormato)
 
             } catch (error) {
                 console.error('Error al obtener los datos', error);
@@ -117,9 +134,9 @@ export default function Partidos() {
                 <h2>Partidos registrados</h2>
                 <div>
                     <ul>
-                    {partidos.map((partido) => (
+                    {partidos.map((partido, idx) => (
                             <VerPartido
-                                key={partido.ID}
+                                key={partido.ID ?? `${partido.lugar || 'lugar'}-${partido.fecha || 'fecha'}-${idx}`}
                                 partido={partido}
                             />
                     ))}

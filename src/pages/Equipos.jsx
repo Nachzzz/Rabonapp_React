@@ -101,16 +101,54 @@ export default function Equipos() {
                         'Authorization': `Bearer ${token}`
                     }
                 })
-                if (!response.ok) {
-                    throw new Error('Network response was not ok')
-                }
                 const dataEquipos = await response.json()
-                console.log("Datos de equipos recibidos:", dataEquipos);
-                const formatoEquipos = dataEquipos.map(equipo => ({
-                    id: equipo[0],
-                    nombre: equipo[1],
-                    imagen: equipo[2]
-                }))
+                // Manejar respuestas no-ok (ej: 404 cuando no hay equipos)
+                if (!response.ok) {
+                    console.warn('Fetch /equipos returned non-OK', response.status, dataEquipos)
+                    // si el backend envía un mensaje explicativo, lo mostramos
+                    const msg = dataEquipos && (dataEquipos.msg || dataEquipos.Mensaje) ? (dataEquipos.msg || dataEquipos.Mensaje) : 'No se pudieron obtener los equipos'
+                    setEquipos([])
+                    setMensajeConsulta(msg)
+                    return
+                }
+
+                // console.log("Datos de equipos recibidos:", dataEquipos);
+                if (!Array.isArray(dataEquipos)) {
+                    // estructura inesperada
+                    console.warn('Unexpected /equipos response shape', dataEquipos)
+                    setEquipos([])
+                    setMensajeConsulta('Respuesta inesperada del servidor')
+                    return
+                }
+
+                const formatoEquipos = dataEquipos.map((equipo, idx) => {
+                    // Casos comunes del backend:
+                    // - [[id, nombre, escudo], ...]
+                    // - [[nombre], [nombre2], ...]
+                    // - [{id:..., nombre:...}, ...]
+                    if (Array.isArray(equipo)) {
+                        if (equipo.length >= 3) {
+                            return { id: equipo[0], nombre: equipo[1], imagen: equipo[2] }
+                        }
+                        if (equipo.length === 2) {
+                            return { id: equipo[0], nombre: equipo[1], imagen: null }
+                        }
+                        // length === 1 (solo nombre)
+                        return { id: null, nombre: equipo[0], imagen: null }
+                    }
+
+                    if (equipo && typeof equipo === 'object') {
+                        // manejar objetos con diferentes keys
+                        const id = equipo.ID ?? equipo.id ?? equipo.id_equipo ?? equipo.id_equipo_insertado ?? null
+                        const nombre = equipo.nombre ?? equipo.Nombre ?? Object.values(equipo)[0] ?? null
+                        const imagen = equipo.escudo ?? equipo.imagen ?? equipo.escudo_url ?? null
+                        return { id, nombre, imagen }
+                    }
+
+                    // fallback: convertir a string
+                    return { id: null, nombre: String(equipo), imagen: null }
+                })
+
                 setEquipos(formatoEquipos)
             } catch (error) {
                 console.error('Problema al hacer fetch', error)
@@ -132,9 +170,9 @@ export default function Equipos() {
                         <div className='divEquip'>
                             <div className='orden'>
                             {equipos.length > 0 ? (
-                                equipos.map(equipo => (
+                                equipos.map((equipo, idx) => (
                                     <VerEquipo
-                                        key={equipo.id}
+                                        key={equipo.id ?? `${equipo.nombre}-${idx}`}
                                         equipo={equipo}
                                     />
                                 ))

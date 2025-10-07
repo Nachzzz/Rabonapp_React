@@ -9,7 +9,9 @@ export default function Layout() {
         <AuthProvider>
             <div className="layout">
                 <NavBar />
-                <Outlet />
+                <main className="content">
+                    <Outlet />
+                </main>
                 <Footer />
             </div>
         </AuthProvider>

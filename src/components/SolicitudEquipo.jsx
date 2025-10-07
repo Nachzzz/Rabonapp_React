@@ -29,6 +29,16 @@ export default function SolicitudEquipo({ equipo }) {
 
         if (!mensaje) return;
 
+        // Validar que el equipo exista y tenga id
+        if (!equipo || (!equipo.id && equipo.id !== 0)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Equipo no disponible',
+                text: 'No se pudo identificar el equipo seleccionado. Intenta recargar la página.',
+            });
+            return;
+        }
+
         try {
             const response = await fetch("http://127.0.0.1:5000/solicitar-equipo", {
                 method: "POST",
@@ -40,7 +50,8 @@ export default function SolicitudEquipo({ equipo }) {
             });
 
             if (!response.ok) {
-                throw new Error(`Error de red: ${response.status}`);
+                const errBody = await response.json().catch(() => ({}));
+                throw new Error(errBody.msg || errBody.Mensaje || `Error de red: ${response.status}`);
             }
 
             await response.json();
@@ -53,7 +64,7 @@ export default function SolicitudEquipo({ equipo }) {
 
             setTimeout(() => {
                 window.location.reload();
-            }, 3000);
+            }, 1500);
         } catch (error) {
             Swal.fire({
                 icon: "error",

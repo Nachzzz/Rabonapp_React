@@ -35,6 +35,44 @@ body, html {
     position: relative;
   }
   
+  /* Jugadores list styles */
+  .jugadores-container{
+    width: 100%;
+    max-width: 600px;
+    background: rgba(0,0,0,0.6);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    color: white;
+  }
+  
+  .jugadores-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  
+  .jugador-item{
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    background: rgba(255,255,255,0.03);
+    padding: 0.5rem;
+    border-radius: 6px;
+  }
+  
+  .jugador-info{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .jugador-nombre{ font-weight: 600; }
+  
+  .jugador-apodo{ font-size: 0.9rem; color: #ccc }
+  
   @media (max-width: 768px) {
     .title {
       font-size: 2.5rem;
@@ -43,6 +81,7 @@ body, html {
   
   @media (max-width: 480px) {
     .title {
+  .jugadores-list{ grid-template-columns: 1fr; }
       font-size: 2rem;
     }
   }
@@ -65,28 +104,28 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 12rem;
+    margin: 4rem;
   }
 
   .todoPartido {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    margin: 9rem;
+    margin: 3rem;
   }
 
   .todoSolicitarEquipo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 9rem;
+    margin: 3rem;
   }
 
   .todoRegEnfren {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 6rem;
+    margin: 2.5rem;
   }
 
   .equipos-solicitud{
@@ -113,8 +152,8 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 8rem;
-    width: 80rem;
+    margin: 4rem auto;
+    max-width: 1200px;
   }
 
   .reg-enfren-container{
@@ -127,8 +166,8 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0.5rem;
-    width: 80rem;
+    margin: 1rem auto;
+    max-width: 1200px;
   }
 
   .reportes{
@@ -146,8 +185,8 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
-    width: 80rem;
+    margin: 10px auto;
+    max-width: 1200px;
   }
 
   .solicitar-equipo-container{
@@ -160,8 +199,8 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
-    width: 80rem;
+    margin: 10px auto;
+    max-width: 1200px;
   }
 
   .lista-solicitar-equipo{
@@ -174,7 +213,7 @@ body, html {
   .todo2 {
     display: flex;
     flex-direction: row;
-    margin-bottom: 22rem;
+    margin-bottom: 6rem;
   }
   
   .home {
@@ -207,8 +246,8 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
-    width: 80rem;
+    margin: 10px auto;
+    max-width: 1200px;
   }
 
   .bienveEquip{
@@ -221,8 +260,8 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
-    width: 80rem;
+    margin: 10px auto;
+    max-width: 1200px;
   }
 
   .container-text{
@@ -231,12 +270,13 @@ body, html {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    margin-right: 50px;
+    margin-right: 0;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
+    margin: 10px auto;
+    max-width: 1200px;
     margin-bottom: 20%;
   }
 
@@ -338,6 +378,23 @@ body, html {
   button:hover {
     background-color: #0056b3;
   }
+
+  /* Danger button for destructive actions (delete) */
+  .btn-danger {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-left: 0.5rem;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
   
   .solicitudes {
     background: rgba(255, 255, 255, 0.85);
@@ -358,43 +415,43 @@ body, html {
 
    /* equipos.css */
 
-   .equip{
+  .equip{
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    margin: 10rem;
-    margin-top: 5rem;
+   margin: 3rem;
+   margin-top: 2.5rem;
     border-radius: 8px;
     padding: 20px;
     flex-wrap: wrap;
     flex-direction: row;
    }
 
-   .equipMios{
+  .equipMios{
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    margin: 10rem;
-    margin-top: 5rem;
-    margin-right: 5rem;
+   margin: 3rem;
+   margin-top: 2.5rem;
+   margin-right: 1rem;
     border-radius: 8px;
     padding: 20px;
     flex-wrap: wrap;
     flex-direction: row;
    }
 
-   .crearEquip{
+  .crearEquip{
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    margin: 10rem;
-    margin-top: 5rem;
+   margin: 3rem;
+   margin-top: 2.5rem;
     border-radius: 8px;
     padding: 20px;
    }
@@ -443,11 +500,32 @@ body, html {
     align-items: center;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.7);
-    margin: 5rem;
-    margin-bottom: 19.8rem;
-    padding: 5rem;
+    margin: 3rem;
+    margin-bottom: 6rem;
+    padding: 2rem;
     color: white;
     border-style: solid;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
    }
+
+/* Reduce spacing on small screens to avoid horizontal overflow */
+@media (max-width: 768px) {
+  .todoHome, .todoPartido, .todoSolicitarEquipo, .todoRegEnfren,
+  .equip, .equipMios, .crearEquip, .equipo-form {
+    margin: 1rem !important;
+    padding: 1rem !important;
+  }
+
+  .register-open-match-container,
+  .reg-enfren-container,
+  .reportes-container,
+  .solicitar-equipo-container,
+  .bienve,
+  .bienveEquip,
+  .container-text {
+    padding: 1rem !important;
+    margin: 1rem auto !important;
+    max-width: 100% !important;
+  }
+}
