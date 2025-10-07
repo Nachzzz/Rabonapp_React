@@ -8,7 +8,7 @@ const useFetchEquipos = () => {
   useEffect(() => {
     const fetchEquipos = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/equipos", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/equipos`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

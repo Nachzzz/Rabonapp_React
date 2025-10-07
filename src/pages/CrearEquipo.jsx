@@ -47,7 +47,7 @@ const RegisterTeam = () => {
         if (!confirm.isConfirmed) return;
 
         try {
-            const response = await fetch("http://127.0.0.1:5000/crearEquipo", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/crearEquipo`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -27,7 +27,7 @@ export default function Equipos() {
     const handleCargarSolicitudes = (e) => {
         e.preventDefault()
         setVerSolicitudes(true)
-        const url = 'http://127.0.0.1:5000/solicitudes';
+        const url = `${import.meta.env.VITE_API_URL}/solicitudes`;
         fetch(url, {
             method: 'GET',
             headers: {
@@ -61,7 +61,7 @@ export default function Equipos() {
     const handleEquiposJug = async () => {
         setLoading(true); // Inicia el estado de carga
         const idConsulta = jugador.ID;
-        const urlEquiposJugador = `http://127.0.0.1:5000/equipos/jugador/${idConsulta}`
+        const urlEquiposJugador = `${import.meta.env.VITE_API_URL}/equipos/jugador/${idConsulta}`
         
 
         if (!idConsulta) {
@@ -95,7 +95,7 @@ export default function Equipos() {
     useEffect(() => {
         const fetchEquipos = async () => {
             try {
-                const urlEqui = 'http://127.0.0.1:5000/equipos';
+                const urlEqui = `${import.meta.env.VITE_API_URL}/equipos`;
                 const response = await fetch(urlEqui, {
                     headers: {
                         'Authorization': `Bearer ${token}`

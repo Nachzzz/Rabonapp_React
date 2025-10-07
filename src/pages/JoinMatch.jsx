@@ -17,7 +17,7 @@ const JoinMatch = () => {
     const fetchPartidos = async () => {
         try {
             const token = localStorage.getItem("token"); // Asegúrate de que el token es válido
-            const response = await fetch("http://localhost:5000/partidosSinVisitante", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/partidosSinVisitante`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -63,7 +63,7 @@ const JoinMatch = () => {
     const fetchEquipos = async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch("http://localhost:5000/equipos", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/equipos`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -101,7 +101,7 @@ const JoinMatch = () => {
     const unirseAPartido = async (partidoId) => {
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch(`http://localhost:5000/registrarVisitante/${partidoId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/registrarVisitante/${partidoId}`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -164,95 +164,3 @@ const JoinMatch = () => {
 };
 
 export default JoinMatch;
-
-
-// import { useEffect, useState } from "react";
-
-// const JoinMatch = () => {
-//     const [partidos, setPartidos] = useState([]);
-//     const [error, setError] = useState(null);
-//     const [mensaje, setMensaje] = useState("");
-//     const [equipoVisitante, setEquipoVisitante] = useState("")
-
-//     useEffect(() => {
-//         fetchPartidos();
-//     }, []);
-
-//     const fetchPartidos = async () => {
-//         try {
-//             const token = localStorage.getItem("token"); // Asegúrate de que el token es válido
-//             const response = await fetch("http://localhost:5000/partidosSinVisitante", {
-//                 method: "GET",
-//                 headers: {
-//                     "Authorization": `Bearer ${token}`,
-//                     "Content-Type": "application/json",
-//                 },
-//             });
-
-//             if (!response.ok) {
-//                 throw new Error(`Error ${response.status}: ${response.statusText}`);
-//             }
-
-//             const data = await response.json();
-//             setPartidos(data);
-//         } catch (error) {
-//             setError(error.message);
-//         }
-//     };
-
-//     const unirseAPartido = async (partidoId) => {
-//         try {
-//             const token = localStorage.getItem("token");
-//             const response = await fetch(`http://localhost:5000/registrarVisitante/${partidoId}`, {
-//                 method: "POST",
-//                 headers: {
-//                     "Authorization": `Bearer ${token}`,
-//                     "Content-Type": "application/json",
-//                 },
-//                 body: JSON.stringify({ equipo_visitante_nombre: equipoVisitante }),
-//             });
-
-//             const data = await response.json();
-//             if (!response.ok) {
-//                 throw new Error(data.msg);
-//             }
-
-//             setMensaje("¡Te has unido al partido!");
-//             setEquipoVisitante("");
-//             fetchPartidos(); // Actualiza la lista de partidos
-//         } catch (error) {
-//             setMensaje(error.message);
-//         }
-//     };
-
-
-//     return (
-//         <div>
-//             <h2>Partidos Sin Visitante</h2>
-//             {error && <p style={{ color: "red" }}>Error: {error}</p>}
-//             {mensaje && <p style={{ color: "green" }}>{mensaje}</p>}
-
-//             <input
-//                 type="text"
-//                 placeholder="Nombre de tu equipo"
-//                 value={equipoVisitante}
-//                 onChange={(e) => setEquipoVisitante(e.target.value)}
-//             />
-
-//             {partidos.length === 0 ? (
-//                 <p>No hay partidos disponibles.</p>
-//             ) : (
-//                 <ul>
-//                     {partidos.map((partido) => (
-//                         <li key={partido.ID}>
-//                             {partido.lugar} - {new Date(partido.fecha).toLocaleString()}{" "}
-//                             <button onClick={() => unirseAPartido(partido.ID)}>Unirse</button>
-//                         </li>
-//                     ))}
-//                 </ul>
-//             )}
-//         </div>
-//     );
-// };
-
-// export default JoinMatch;

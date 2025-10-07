@@ -18,7 +18,7 @@ const RegisterMatch = () => {
     useEffect(() => {
         const fetchEquipos = async () => {
             try {
-                const response = await fetch("http://127.0.0.1:5000/equipos", {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/equipos`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -37,7 +37,7 @@ const RegisterMatch = () => {
 
         const fetchEquiposVisitantes = async () => {
             try {
-                const urlEqui = 'http://127.0.0.1:5000/todoslosequipos';
+                const urlEqui = `${import.meta.env.VITE_API_URL}/todoslosequipos`;
                 const response = await fetch(urlEqui)
                 if (!response.ok) {
                     throw new Error('Network response was not ok ', error)
@@ -65,7 +65,7 @@ const RegisterMatch = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://127.0.0.1:5000/crearEnfrentamiento", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/crearEnfrentamiento`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

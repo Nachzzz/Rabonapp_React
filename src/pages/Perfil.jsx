@@ -16,7 +16,7 @@ export default function Perfil() {
 
     useEffect(() => {
         const fetchJugador = async () => {
-            const url = 'http://127.0.0.1:5000/perfil'; // Asegúrate de obtener el token JWT correctamente
+            const url = `${import.meta.env.VITE_API_URL}/perfil`; // Asegúrate de obtener el token JWT correctamente
 
             if (!token) {
                 console.log("No hay token");
@@ -61,7 +61,7 @@ export default function Perfil() {
     const handleEquiposJug = async () => {
         setLoading(true); // Inicia el estado de carga
         const idConsulta = jugador.ID;
-        const urlEquiposJugador = `http://127.0.0.1:5000/equipos/jugador/${idConsulta}`
+        const urlEquiposJugador = `${import.meta.env.VITE_API_URL}/equipos/jugador/${idConsulta}`
 
 
         if (!idConsulta) {

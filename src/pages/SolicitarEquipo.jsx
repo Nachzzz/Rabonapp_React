@@ -15,7 +15,7 @@ export default function SolicitarEquipo() {
     useEffect(() => {
         const fetchEquipos = async () => {
             try {
-                const urlEqui = 'http://127.0.0.1:5000/todoslosequipos';
+                const urlEqui = `${import.meta.env.VITE_API_URL}/todoslosequipos`;
                 const response = await fetch(urlEqui)
                 if (!response.ok) {
                     throw new Error('Network response was not ok ', error)

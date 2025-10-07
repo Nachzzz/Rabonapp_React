@@ -38,7 +38,7 @@ export default function VerEquipo({ equipo }) {
         setLoadingJug(true)
         setErrorJug(null)
         try {
-            const response = await fetch(`http://localhost:5000/equipos/${equipoId}/jugadores`)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/equipos/${equipoId}/jugadores`)
             if (!response.ok) {
                 const body = await response.json().catch(() => ({}))
                 throw new Error(body.msg || body.error || `Error ${response.status}`)
@@ -71,7 +71,7 @@ export default function VerEquipo({ equipo }) {
         const checkCapitan = async () => {
             try {
                 if (!user__id) return
-                const url = `http://127.0.0.1:5000/equipos-locales/${user__id}`
+                const url = `${import.meta.env.VITE_API_URL}/equipos-locales/${user__id}`
                 const response = await fetch(url, {
                     headers: token ? { Authorization: `Bearer ${token}` } : {}
                 })
@@ -108,7 +108,7 @@ export default function VerEquipo({ equipo }) {
         if (!result.isConfirmed) return
 
         try {
-            const response = await fetch(`http://127.0.0.1:5000/equipos/${formatedEquipo.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/equipos/${formatedEquipo.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

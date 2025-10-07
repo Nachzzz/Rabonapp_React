@@ -37,7 +37,7 @@ export default function VerSolicitud({solicitud}) {
             cancelButtonText: 'Cancelar',
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = 'http://127.0.0.1:5000/solicitudes';
+                const url = `${import.meta.env.VITE_API_URL}/solicitudes`;
                 fetch(url, {
                     method: 'POST',
                     headers: {
@@ -84,7 +84,7 @@ export default function VerSolicitud({solicitud}) {
             cancelButtonText: 'Cancelar',
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = 'http://127.0.0.1:5000/solicitudes';
+                const url = `${import.meta.env.VITE_API_URL}/solicitudes`;
                 fetch(url, {
                     method: 'DELETE',
                     headers: {
